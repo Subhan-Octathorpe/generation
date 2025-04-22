@@ -571,7 +571,7 @@ def add_max_gap_constraint(model, schedule, course_subs, all_sections, max_gap=1
 
 # 5) BUILD AND SOLVE
 def build_and_solve_once(disc_info, teacher_info, max_time_sec=60, skip_lastN_sections=0, max_gap=1, locked_slots=None, disabled_days=None):
-    bscs1_count = disc_info.get(("BSCS", 1), {}).get("num_sections", 0)
+    bscs1_count = disc_info.get(("Computer Science", 1), {}).get("num_sections", 0)
     skip_day_pref_for = set()
     skip_single_room_for = set()
     if bscs1_count > 0 and skip_lastN_sections > 0:
@@ -583,8 +583,8 @@ def build_and_solve_once(disc_info, teacher_info, max_time_sec=60, skip_lastN_se
             idx -= 1
             c += 1
         for i in to_skip:
-            skip_day_pref_for.add(("BSCS", 1, i))
-            skip_single_room_for.add(("BSCS", 1, i))
+            skip_day_pref_for.add(("Computer Science", 1, i))
+            skip_single_room_for.add(("Computer Science", 1, i))
     (model, schedule, thrm, labrm, subs, sections,
      theory_usage, lab_usage, teacher_assign, teacher_prefs_info) = build_model_no_gap_with_teachers(
          disc_info, teacher_info, locked_slots=locked_slots, disabled_days=disabled_days,
