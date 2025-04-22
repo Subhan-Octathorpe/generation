@@ -1,0 +1,34 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Flask / local settings
+instance/
+.env
+.env.*
+*.env
+*.local
+
+# Virtual environment
+venv/
+venv.bak/
+ENV/
+env/
+
+# pip / distribution
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Flask server files
+*.log
+*.pid
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Mac/Windows system files
+.DS_Store
+Thumbs.db
