@@ -606,21 +606,22 @@ def solve_iterative_with_timeouts(disc_info, teacher_info, locked_slots=None, di
         locked_slots = []
     if disabled_days is None:
         disabled_days = {}
+    print("Approach 1", flush=True)
     feasible, solver, model, schedule, thrm, labrm, subs, sections, theory_usage, lab_usage, teacher_assign, teacher_prefs_info, status = build_and_solve_once(
-        disc_info, teacher_info, max_time_sec=60, skip_lastN_sections=0, max_gap=1,locked_slots=locked_slots, disabled_days=disabled_days )
+        disc_info, teacher_info, max_time_sec=1, skip_lastN_sections=0, max_gap=1,locked_slots=locked_slots, disabled_days=disabled_days )
     if feasible:
         return feasible, solver, model, schedule, thrm, labrm, subs, sections, theory_usage, lab_usage, teacher_assign, teacher_prefs_info, status
-
+    print("Approach 2")
     feasible, solver, model, schedule, thrm, labrm, subs, sections, theory_usage, lab_usage, teacher_assign, teacher_prefs_info, status = build_and_solve_once(
-        disc_info, teacher_info, max_time_sec=60, skip_lastN_sections=1, max_gap=1)
+        disc_info, teacher_info, max_time_sec=1, skip_lastN_sections=1, max_gap=1)
     if feasible:
         return feasible, solver, model, schedule, thrm, labrm, subs, sections, theory_usage, lab_usage, teacher_assign, teacher_prefs_info, status
-
+    print("Approach 3")
     feasible, solver, model, schedule, thrm, labrm, subs, sections, theory_usage, lab_usage, teacher_assign, teacher_prefs_info, status = build_and_solve_once(
         disc_info, teacher_info, max_time_sec=60, skip_lastN_sections=2, max_gap=1)
     if feasible:
         return feasible, solver, model, schedule, thrm, labrm, subs, sections, theory_usage, lab_usage, teacher_assign, teacher_prefs_info, status
-
+    print("Approach 4")
     feasible, solver, model, schedule, thrm, labrm, subs, sections, theory_usage, lab_usage, teacher_assign, teacher_prefs_info, status = build_and_solve_once(
         disc_info, teacher_info, max_time_sec=3000, skip_lastN_sections=3, max_gap=0)
     return feasible, solver, model, schedule, thrm, labrm, subs, sections, theory_usage, lab_usage, teacher_assign, teacher_prefs_info, status
@@ -806,5 +807,5 @@ def solve_endpoint():
 #     print(" * ngrok tunnel:", public_url)
 #     app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False)
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
 
