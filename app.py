@@ -115,11 +115,11 @@ def expand_course(course):
             })
     return out
 
-def is_first_third_year(y):
-    return (y == 1 or y == 3)
+# def is_first_third_year(y):
+#     return (y == 1 or y == 3)
 
-def is_second_fourth_year(y):
-    return (y == 2 or y == 4)
+# def is_second_fourth_year(y):
+#     return (y == 2 or y == 4)
 
 # 3) MODEL BUILDING FUNCTION
 def build_model_no_gap_with_teachers(
@@ -751,6 +751,18 @@ CORS(app)
 @app.route('/solve', methods=['POST'])
 def solve_endpoint():
     data = request.get_json()
+        # read the radio‐button flag (defaults to 1)
+    generation_option = data.get("generationOption", 1)
+
+    # dynamically swap the two year‐check helpers
+    global is_first_third_year, is_second_fourth_year
+    if generation_option == 2:
+        is_first_third_year    = lambda y: (y == 2 or y == 4)
+        is_second_fourth_year  = lambda y: (y == 1 or y == 3)
+    else:
+        is_first_third_year    = lambda y: (y == 1 or y == 3)
+        is_second_fourth_year  = lambda y: (y == 2 or y == 4)
+
     room_info_input = data.get("rooms", {})
     lab_room_info_input = data.get("lab_rooms", {})
     teacher_info_input = data.get("teachers", {})
